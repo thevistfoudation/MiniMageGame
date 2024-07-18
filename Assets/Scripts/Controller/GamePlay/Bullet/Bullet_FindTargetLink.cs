@@ -8,5 +8,4 @@ public class Bullet_FindTargetLink : Base_FindTarget
     public override float range => Range;
 
     [HideInInspector] public float Range;
-
 }

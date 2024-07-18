@@ -11,14 +11,19 @@ public class BulletLinkArcController : MonoBehaviour
     private Bullet_FindTargetLink _bullet_FindTargetLink;
     private ArcController _arcController;
     private ArcData _arcData;
-    private GameObject _target;
     public GameObject targetObject;
-    private bool canConnect;
+    public bool rejectConnect;
 
     private void Awake()
     {
         InitDataBase();
     }
+
+    private void OnEnable()
+    {
+        rejectConnect = false;
+    }
+
 
     private void InitDataBase()
     {
@@ -31,19 +36,27 @@ public class BulletLinkArcController : MonoBehaviour
 
     private void Update()
     {
-        if (!_bullet_FindTargetLink || !_bullet_FindTargetLink.AcceptTarget(targetObject) && !canConnect)
-        {
-            targetObject = _bullet_FindTargetLink.FindTarget();
-            canConnect = true;
-        }
-        if(canConnect && !(targetObject is null))
+        if (rejectConnect && targetObject)
         {
             SetLine();
         }
+        if (!_bullet_FindTargetLink.AcceptTarget(targetObject) && !rejectConnect)
+        {
+            if (_bullet_FindTargetLink.FindTarget())
+            {
+                var canConnect = _bullet_FindTargetLink.FindTarget().GetComponent<BulletLinkArcController>();
+                if (!canConnect.rejectConnect)
+                {
+                    targetObject = _bullet_FindTargetLink.FindTarget();
+                    rejectConnect = true;
+                }
+            }
+        }
     }
 
+  
     private void SetLine()
     {
-        _arcController.SetLine(gameObject.transform, targetObject.transform);
+        _arcController.SetLine(gameObject.transform, targetObject.transform, _arcData.distance);
     }
 }
