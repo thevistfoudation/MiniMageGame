@@ -13,8 +13,15 @@ public class PlayerController : CharacterController
     private BulletPlayerData _bulletPlayerData;
     private float _timeShoot;
     private float _countTime;
+    public static PlayerController Instance;
 
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -48,7 +55,6 @@ public class PlayerController : CharacterController
         if (Input.GetMouseButton(0))
         {
             _countTime -= Time.deltaTime;
-            Debug.Log(_countTime + "time coolDown");
             if (_countTime <= 0)
             {
                 ShootBullet();

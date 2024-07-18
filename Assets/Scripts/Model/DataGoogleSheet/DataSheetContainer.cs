@@ -22,6 +22,8 @@ namespace jinLab.Model
         public List<BulletPlayerData> bulletPlayerData;
         [SpreadsheetPage("Enemy")]
         public List<EnemyData> enemyData;
+        [SpreadsheetPage("ArcData")]
+        public List<ArcData> arcData;
 
     }
 
@@ -42,6 +44,7 @@ namespace jinLab.Model
         public float bounceMax;
         public float penetrationMax;
         public float time;
+        public float timeDamage;
     }
 
     [System.Serializable]
@@ -50,6 +53,15 @@ namespace jinLab.Model
         public float speed;
         public float hp;
         public float damage;
+    }
+
+
+    [System.Serializable]
+    public class ArcData
+    {
+        public float distance;
+        public float damage;
+        public float time;
     }
 
 }

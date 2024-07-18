@@ -1,20 +1,23 @@
 
+using Controller.LoadData;
 using Core.Pool;
+using jinLab.Model;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletController : MoveController
 {
+    private float _damage;
     private float _time;
     private float _bouncesMax;
     private float _PenetrationMax;
-    public float damage;
-
+   
 
     public void InitilizerData(float speedData, float damageData, float timeData, float bounceData, float penetration)
     {
         speed = speedData;
-        damage = damageData;
+        _damage = damageData;
         _time = timeData;
         _bouncesMax = bounceData;
         _PenetrationMax = penetration;
@@ -37,7 +40,7 @@ public class BulletController : MoveController
         if(collision.transform.CompareTag("Mirror"))
         {
             var first = collision.ClosestPoint(transform.position);
-            Vector2 direct = Vector2.Reflect(gameObject.transform.up, first);
+            Vector3 direct = Vector3.Reflect(gameObject.transform.up, first);
             this.transform.up = direct;
             _bouncesMax -= 1;
             if( _bouncesMax <= 0)

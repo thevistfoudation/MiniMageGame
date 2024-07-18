@@ -18,6 +18,7 @@ MonoBehaviour:
   - bulletPlayerData
   - enemyData
   - playerData
+  - arcData
   foldoutSerializationGUI: 1
   serializationOutputPath: ../../Configs
   serializationFileName: Configs.v0.1
@@ -33,7 +34,12 @@ MonoBehaviour:
       bounceMax: 5
       penetrationMax: 5
       time: 10
+      timeDamage: 0.5
     enemyData:
     - speed: 10
       hp: 500
       damage: 10
+    arcData:
+    - distance: 5
+      damage: 10
+      time: 0.5

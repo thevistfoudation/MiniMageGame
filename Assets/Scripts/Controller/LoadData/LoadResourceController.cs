@@ -51,13 +51,6 @@ namespace Controller.LoadData
         #endregion
 
         #region LoadDataAsset
-        // cách load data từ scriptable Object
-        //public FoodTypeCollection LoadFoodDataCollection()
-        //{
-        //    var path = string.Format(ResourcesFolderPath.DataFolder , ResourcesFolderPath.DataFolderFood );
-        //    return Load<FoodTypeCollection(tên class của scriptable Object)>(path, "FoodData"(tên của scriptable Object));
-        //}
-
         public DataSheetContainer LoadSheetData()
         {
             var path = string.Format(ResourcesFolderPath.DataFolder, ResourcesFolderPath.SheetData);
@@ -72,8 +65,14 @@ namespace Controller.LoadData
 
         public BulletPlayerData LoadBulletPlayerData()
         {
-            var playerData = LoadSheetData().Content.bulletPlayerData[0];
-            return playerData;
+            var playerBulletData = LoadSheetData().Content.bulletPlayerData[0];
+            return playerBulletData;
+        }
+
+        public ArcData LoadArcData()
+        {
+            var playerArcData = LoadSheetData().Content.arcData[0];
+            return playerArcData;
         }
 
         #endregion

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveController : MonoBehaviour
 {
+    [HideInInspector]
     public float speed;
 
     protected virtual void Move(Vector3 direction)
