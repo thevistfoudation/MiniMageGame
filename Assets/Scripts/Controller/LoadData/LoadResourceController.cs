@@ -81,6 +81,12 @@ namespace Controller.LoadData
             return enemyData;
         }
 
+        public GamePlayData LoadGamePlayData()
+        {
+            var gamePlayData = LoadSheetData().Content.gamePlayData[0];
+            return gamePlayData;
+        }
+
         #endregion
     }
 }

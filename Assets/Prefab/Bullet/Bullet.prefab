@@ -70,9 +70,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0031198263, y: 0.0036801696}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.5138165
 --- !u!50 &6580313987963790684
 Rigidbody2D:
   serializedVersion: 4
@@ -128,6 +128,8 @@ MonoBehaviour:
   layerTarget:
     serializedVersion: 2
     m_Bits: 64
+  targetObject: {fileID: 0}
+  rejectConnect: 0
 --- !u!114 &5312967143292744574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,15 +180,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 406684, guid: b73366db2a2695c46a59adb7555604e9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 406684, guid: b73366db2a2695c46a59adb7555604e9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 406684, guid: b73366db2a2695c46a59adb7555604e9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 406684, guid: b73366db2a2695c46a59adb7555604e9, type: 3}
       propertyPath: m_LocalPosition.x

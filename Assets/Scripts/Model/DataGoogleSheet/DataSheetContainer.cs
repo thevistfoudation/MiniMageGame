@@ -24,6 +24,8 @@ namespace jinLab.Model
         public List<EnemyData> enemyData;
         [SpreadsheetPage("ArcData")]
         public List<ArcData> arcData;
+        [SpreadsheetPage("GamePlayData")]
+        public List<GamePlayData> gamePlayData;
 
     }
 
@@ -62,6 +64,15 @@ namespace jinLab.Model
         public float distance;
         public float damage;
         public float time;
+    }
+
+    [System.Serializable]
+    public class GamePlayData
+    {
+        public int obstacle;
+        public int enemy;
+        public float rangeSpawnEnemy;
+        public float rangeSpawnObStacle;
     }
 
 }

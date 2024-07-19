@@ -80,6 +80,10 @@ public class BulletLinkArcController : MonoBehaviour
                     }
                    
                 }
+                if (hit.transform.CompareTag("Obstacle"))
+                {
+                    _arcController.DisableLine();
+                }
                 if (hit.transform.CompareTag("Mirror"))
                 {
                     _arcController.DisableLine();

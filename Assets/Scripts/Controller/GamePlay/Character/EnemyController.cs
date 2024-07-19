@@ -9,7 +9,9 @@ public class EnemyController : CharacterController
     private Vector3 pos;
     private EnemyData _enemyData;
     private float _hp;
+    private float _maxhp; 
     private MMF_Player _myPlayer;
+    [SerializeField] private HpController _hpController;
 
     private void Awake()
     {
@@ -27,6 +29,9 @@ public class EnemyController : CharacterController
        
         speed = _enemyData.speed;
         _hp = _enemyData.hp;
+        _maxhp = _enemyData.hp;
+        
+        _hpController.ShowHp(_hp, _maxhp);
     }
 
     private void Start()
@@ -57,8 +62,10 @@ public class EnemyController : CharacterController
         MMF_FloatingText floatingText = _myPlayer.GetFeedbackOfType<MMF_FloatingText>();
         floatingText.Value = text;
         _myPlayer.PlayFeedbacks(this.transform.position, damage);
+        _hpController.ShowHp(_hp, _maxhp);
         if ( _hp <= 0)
         {
+            this.PostEvent(EventID.EnemyDie);
             SmartPool.Instance.Despawn(gameObject);
         }
     }

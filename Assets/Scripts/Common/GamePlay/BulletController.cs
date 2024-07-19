@@ -55,14 +55,13 @@ public class BulletController : MoveController
         if (collision.transform.CompareTag("Enemy"))
         {
             _PenetrationMax -= 1;
-
             _countTimeDamage -= Time.deltaTime;
-            if (_countTimeDamage <= 0 && _name != collision.name)
+            if (_countTimeDamage <= 0 || _name != collision.name)
             {
-                _name = collision.name;
                 collision.transform.GetComponent<EnemyController>().TakeDamage(_damage);
                 _countTimeDamage = _timeDamage;
-                _name = null;
+                _name = collision.name;
+                CreateController.Instance.Smoke(gameObject.transform);
             }
             
 
