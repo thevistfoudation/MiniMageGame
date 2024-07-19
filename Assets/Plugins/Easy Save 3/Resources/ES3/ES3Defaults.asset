@@ -31,10 +31,10 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp-firstpass
     - MoreMountains.Feedbacks
+    - Assembly-CSharp
     - NorskaLib.Spreadsheets
     - ProCamera2D.Editor
     - PsdPlugin
-    - Assembly-CSharp
     - ProCamera2D.Runtime
     - MoreMountains.Tools
     - MoreMountains.Feedbacks.Editor

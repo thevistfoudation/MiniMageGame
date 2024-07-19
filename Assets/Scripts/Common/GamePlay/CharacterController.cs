@@ -22,9 +22,9 @@ public class CharacterController : MoveController
         gun.transform.up = direction;
     }
 
-    public void Shoot(float speedData, float damageData, float timeData, float bounceData, float penetration)
+    public void Shoot(float speedData, float damageData, float timeData, float bounceData, float penetration, float timeDamage)
     {
         var bullet = CreateController.Instance.BulletController(transhoot);
-        bullet.InitilizerData(speedData,damageData,timeData,bounceData,penetration);
+        bullet.InitilizerData(speedData,damageData,timeData,bounceData,penetration, timeDamage);
     }
 }

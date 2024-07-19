@@ -71,7 +71,8 @@ public class PlayerController : CharacterController
         var timeData = _bulletPlayerData.time;
         var bounceData = _bulletPlayerData.bounceMax;
         var penetration = _bulletPlayerData.penetrationMax;
-        Shoot(speedData, damageData, timeData, bounceData, penetration);
+        var timeDamage = _bulletPlayerData.timeDamage;
+        Shoot(speedData, damageData, timeData, bounceData, penetration, timeDamage);
         _countTime = _timeShoot;
     }
   

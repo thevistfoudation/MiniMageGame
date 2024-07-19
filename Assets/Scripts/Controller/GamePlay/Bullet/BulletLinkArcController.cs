@@ -2,6 +2,7 @@ using Controller.LoadData;
 using jinLab.Model;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -13,7 +14,7 @@ public class BulletLinkArcController : MonoBehaviour
     private ArcData _arcData;
     public GameObject targetObject;
     public bool rejectConnect;
-
+    private float _timeCountDamage;
     private void Awake()
     {
         InitDataBase();
@@ -22,6 +23,7 @@ public class BulletLinkArcController : MonoBehaviour
     private void OnEnable()
     {
         rejectConnect = false;
+        targetObject = null;
     }
 
 
@@ -39,6 +41,7 @@ public class BulletLinkArcController : MonoBehaviour
         if (rejectConnect && targetObject)
         {
             SetLine();
+            CheckCollison();
         }
         if (!_bullet_FindTargetLink.AcceptTarget(targetObject) && !rejectConnect)
         {
@@ -47,6 +50,8 @@ public class BulletLinkArcController : MonoBehaviour
                 var canConnect = _bullet_FindTargetLink.FindTarget().GetComponent<BulletLinkArcController>();
                 if (!canConnect.rejectConnect)
                 {
+                    canConnect.rejectConnect = true;
+                    canConnect.targetObject = gameObject;
                     targetObject = _bullet_FindTargetLink.FindTarget();
                     rejectConnect = true;
                 }
@@ -54,9 +59,38 @@ public class BulletLinkArcController : MonoBehaviour
         }
     }
 
-  
+    public void CheckCollison()
+    {
+        var distance = Vector3.Distance(gameObject.transform.localPosition, targetObject.transform.localPosition);
+        var direc = targetObject.transform.localPosition - transform.localPosition;
+        if (distance <= _arcData.distance)
+        {
+            RaycastHit2D[] hits = Physics2D.RaycastAll(gameObject.transform.localPosition, direc, distance);
+            Debug.DrawRay(transform.localPosition, direc, Color.cyan, 5);
+            for (int i = 0; i < hits.Length; i++)
+            {
+                var hit = hits[i];
+                if (hit.transform.CompareTag("Enemy"))
+                {
+                    _timeCountDamage -= Time.deltaTime;
+                    if (_timeCountDamage <= 0)
+                    {
+                        hit.transform.GetComponent<EnemyController>().TakeDamage(_arcData.damage);
+                        _timeCountDamage = _arcData.time;
+                    }
+                   
+                }
+                if (hit.transform.CompareTag("Mirror"))
+                {
+                    _arcController.DisableLine();
+                }
+            }
+        }
+    }
+
     private void SetLine()
     {
         _arcController.SetLine(gameObject.transform, targetObject.transform, _arcData.distance);
     }
+
 }

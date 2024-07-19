@@ -75,6 +75,12 @@ namespace Controller.LoadData
             return playerArcData;
         }
 
+        public EnemyData LoadEnemyData()
+        {
+            var enemyData = LoadSheetData().Content.enemyData[0];
+            return enemyData;
+        }
+
         #endregion
     }
 }
